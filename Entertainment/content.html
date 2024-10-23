@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content</title>
+
+    <link rel="stylesheet" href="src/output.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+    </style>
+
+</head>
+
+<body style="font-family: Lora, serif;">
+    <body>
+
+    <div class="main w-[50vw] mx-auto h-fit  mt-10">
+    <div class="news h-fit flex flex-col shadow-lg p-10 w-full gap-5 ">
+        <div class="title text-3xl font-semibold"></div>
+
+        <img class="h-[40vh] w-full object-cover" src="" alt="">
+        <div class="description text-lg text-gray-500"></div>
+
+    </div>
+
+    <div class="flex items-center p-6 bg-gray-300 shadow-lg w-full gap-10">
+        <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
+
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EA3323"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg> -->
+        </div>
+
+        <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+        </div>
+
+        <div>
+        <svg class="h-7" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+            <path d="M 35.484375 5.984375 A 1.50015 1.50015 0 0 0 34.439453 8.5605469 L 36.878906 11 L 35.5 11 C 23.64339 11 14 20.64339 14 32.5 A 1.50015 1.50015 0 1 0 17 32.5 C 17 22.26461 25.26461 14 35.5 14 L 36.878906 14 L 34.439453 16.439453 A 1.50015 1.50015 0 1 0 36.560547 18.560547 L 41.431641 13.689453 A 1.50015 1.50015 0 0 0 41.423828 11.302734 L 36.560547 6.4394531 A 1.50015 1.50015 0 0 0 35.484375 5.984375 z M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 27.5 A 1.50015 1.50015 0 1 0 39 27.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 L 20.5 9 A 1.50015 1.50015 0 1 0 20.5 6 L 12.5 6 z"></path>
+        </svg>
+
+        </div>
+
+    </div>
+
+    <div class="comment_section flex flex-col gap-4 pt-3">
+        <div class="">58 comments</div>
+
+        <div class="flex items-center gap-5">
+        <div class="h-6 w-7 rounded-full border border-black"></div>
+        <input placeholder="Add a comment..." class="comment text-md outline-none w-full">
+
+        <button class="py-1 post_btn px-4 rounded-md bg-blue-500 text-white">Post</button>
+        </div>
+
+        <div class="user_comments">
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    </div>
+
+ 
+    <script type="module">
+        import {all_news_array} from './source.js'
+        const url = window.location.search;
+
+        // url se hame content.html? -> ? ke agla part milega -> in this case -> title=""..
+
+        // ? ke agle part ko thodi aur readable form me laane ke liye we use URLSearchParams(url)
+
+        // new URLSearchParams(url) -> constructor call hota hai -> object create hota hai -> jisme ? ke baad wala part key-value pairs me convert ho jata hai -> for instance, title="" -> will become key -value pair -> isme hame bhut sare methods bhi milte to work with these key-value pairs -> like .get, .set etc
+
+        // .get method se ham value access kr lete hain (of the key we want)
+
+
+        const urlParams = new URLSearchParams(url);
+        console.log(urlParams);
+        const title = urlParams.get('title');
+        console.log(title);
+        let news = document.querySelector(".news");
+
+        console.log(all_news_array);
+
+        all_news_array.forEach((item)=>{
+            if (item.title == title){
+                console.log(item);
+                if (item.image){
+                news.querySelector("img").src = item.image
+                } else{
+                    news.querySelector("img").src = item.urlToImage
+                }
+                news.querySelector(".title").innerHTML = item.title
+                news.querySelector(".description").innerHTML += item.description
+                news.querySelector(".description").innerHTML += item.content
+                
+            }
+
+        })
+
+        let comment;
+        document.querySelector(".comment").addEventListener('input', ()=>{
+          comment = document.querySelector(".comment").value;
+        })
+
+        let post_button = document.querySelector(".post_btn");
+
+        post_button.addEventListener('click', ()=>{
+            if (comment){
+
+                document.querySelector(".user_comments").innerHTML += `
+                <div class="flex items-center gap-3 p-5">
+                <div class="self-start h-6 w-7 rounded-full border border-black"></div>
+
+                <div class="flex flex-col gap-2">
+                <div class="username"> kashish123 </div>
+                <div>${comment}</div>
+
+                <div class="flex gap-4">
+                <div>
+                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z"/></svg>
+
+                 </div>
+
+                 <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M240-840h440v520L400-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 2-15t4-15l120-282q9-20 30-34t44-14Zm360 80H240L120-480v80h360l-54 220 174-174v-406Zm0 406v-406 406Zm80 34v-80h120v-360H680v-80h200v520H680Z"/></svg>
+                </div>
+
+                <div>Reply</div>
+                </div>
+                </div>
+
+
+
+                </div>
+                `
+
+                document.querySelector(".comment").value = "";
+            }
+           
+        })
+
+      
+
+
+    </script>
+    
+    
+</body>
+</html>

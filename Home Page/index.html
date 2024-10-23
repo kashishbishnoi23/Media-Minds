@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="src/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+@import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+    .slider-container {
+        position: relative;
+        /* height:; */
+        /* width:100vw; */
+        height: 85vh;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .slider-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        transform: scale(1.1);
+    }
+
+    .slider-item.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .slider-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-out;
+    }
+/*
+    .slider-container:hover .slider-image {
+        transform: scale(1.05);
+    }
+*/
+    .slider-text {
+         position: absolute;
+        bottom: 25%;
+        left: 25%;
+        margin:auto; 
+        width: 100%;
+        padding: 40px;
+        /* background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0)); */
+        color: white;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-in-out 0.3s, transform 0.8s ease-in-out 0.3s;
+    }
+
+    .slider-item.active .slider-text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .slider-title {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .slider-description {
+        font-size: 18px;
+        font-weight: 300;
+        max-width: 600px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 24px;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    .slider-btn:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-btn:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    .slider-btn::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+    }
+
+    .slider-btn:active::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    .slider-btn.prev {
+        left: 20px;
+    }
+
+    .slider-btn.next {
+        right: 20px;
+    }
+
+    .slider-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .slider-dot:hover {
+        transform: scale(1.2);
+    }
+
+    .slider-dot.active {
+        background-color: white;
+        transform: scale(1.2);
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    .slider-dot.active {
+        animation: pulse 2s infinite;
+    }
+
+        .category-btn {
+            position: absolute;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 1s ease;
+            white-space: nowrap;
+        }
+
+
+        .show .category-btn {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+        .category-item {
+            position: absolute;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .category-item.left {
+            right: 100%;
+            padding-right: 1rem;
+        }
+
+        .category-item.right {
+            left: 100%;
+            padding-left: 1rem;
+            flex-direction: row-reverse;
+        }
+    
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-animate {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+
+        /* Glass effect for dropdowns */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smooth mobile menu animation */
+        .mobile-menu-enter {
+            transition: all 0.3s ease;
+            transform-origin: top;
+        }
+    </style>
+</head>
+<body style="font-family:'Times New Roman', Times, serif">
+
+    <!-- navbar -->
+    <nav style="font-family: 'Poppins', sans-serif;"
+    class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
+    <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
+    <a href="../Home Page/index.html" ><img class="h-14" src="./black-logo.jpeg" alt=""> </a>
+    <a href="../About Us/About Us.html" class="nav-link cursor-pointer">About</a>
+    <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
+    <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
+    <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
+    <a href="../Entertainment/index.html" class="nav-link cursor-pointer">Entertainment</a>
+    <a href="../Technology/index.html" class="nav-link cursor-pointer">Technology</div>
+    <a href="../Science/index.html" class="nav-link cursor-pointer">Science</a>
+    <a href="../Community/index.html" class="nav-link cursor-pointer">Community</a>
+    <div class="nav-link cursor-pointer"></div>
+    <div class="relative">
+        <button id="langButton"
+            class="nav-link text-gray-100 hover:text-white transition-all duration-300 flex items-center space-x-2 text-sm">
+
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            <span>Language</span>
+            <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+
+        </button>
+            <!-- class="hidden absolute z-50 right-0 mt-2 w-48 glass-effect rounded-xl shadow-xl border border-gray-200 "> -->
+            <select id="languages"  class="langDropdown hidden ">
+
+            <div class="py-2">
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"  value="ar">Arabic</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="zh">Chinese</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="de">German</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="en">English</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="es">Spanish</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="fr">French</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="he">Hebrew</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="it">Italian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="nl">Dutch</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="no">Norwegian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="pt">Portuguese</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="ru">Russian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="sv">Swedish</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"value="ud">Urdu</option>
+                
+       
+            </div>
+        </select>
+    </div>
+   <a href="../Login/index.html"  class="px-5 py-1 border cursor-pointer border-white">Login/Sign Up </a>
+</nav>
+ 
+
+
+    <div class="slider-container">
+        <div class="slider-item active">
+            <img src="fire.jpg"  alt="Slide 1" class="slider-image object-cover">
+            <div class="slider-text">
+                <h2 class="slider-title">Global news</h2>
+                <p class="slider-description">Stay informed with the latest global updates that matter most—breaking news from every corner of the world.</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="https://images.unsplash.com/photo-1591622180707-5d64f8113354?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Slide 4" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Different Categories of News</h2>
+                <p class="slider-description">From politics to entertainment, business to sports—discover a wide range of news categories tailored to your interests, all in one place!</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="online_community.jpg"Slide 2" class="slider-image ">
+            <div class="slider-text">
+                <h2 class="slider-title">Online Community</h2>
+                <p class="slider-description">Join our community to discuss the latest news, share insights, and be part of the conversation shaping tomorrow!</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="multilingual.jpg" alt="Slide 3" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Multilingual Platform</h2>
+                <p class="slider-description">Explore the news in your preferred language—stay connected with updates from around the world, now available in multiple languages!</p>
+            </div>
+        </div>
+     
+        <button class="slider-btn prev">&lt;</button>
+        <button class="slider-btn next">&gt;</button>
+        <div class="slider-dots"></div>
+    </div>
+
+
+    <!-- Latest  -->
+
+
+    <hr>
+    <div class="px-10 mt-24 text-xl" >LATEST</div>
+    
+    <div class="latest_container flex h-[120vh] justify-between w-full   px-10 pt-8 box-border">
+        
+        <!-- left -->
+        <div class="h-full w-[28%] flex flex-col gap-4">
+        <div class="h-[40%] w-full news flex flex-col gap-2 latest overflow-hidden">
+            <!-- <div class="bg-gray-400 h-[80%]"> -->
+                
+            <!-- </div> -->
+           <img src="" class="h-[80%]" alt="">
+
+            <a href="" class="title overflow-hidden">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione repellat nemo similique </a>
+
+        </div>
+
+        <hr>
+
+        <div class="h-[60%] w-full">
+            <div class="h-[20%] news latest flex justify-between w-full py-2 items-center gap-4 overflow-hidden">
+                <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                 <img src="" class="h-full w-[30%]" alt="">
+                <a href="" class="title overflow-hidden">Lorem ipsum dolor sit amet consectetur </a>
+            </div>
+            <hr>
+
+            <div class="h-[20%] latest news flex justify-between w-full py-2 items-center gap-4 overflow-clip">
+                <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                <img src="" class="h-full w-[30%]" alt="">
+
+                <a href="" class="title max-h-full py-2 overflow-hidden">Lorem ipsum dolor sit amet consectetur </a>
+            </div>
+            <hr>
+
+            <div class="latest h-[20%] news flex justify-between w-full py-2 items-center gap-4 overflow-hidden">
+                <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                <img src="" class="h-full w-[30%]" alt="">
+                <a href="" class="title max-h-full py-2 overflow-hidden">Lorem ipsum dolor sit amet consectetur </a>
+            </div>
+            <hr>
+
+           
+        </div>
+        </div>
+
+        <!-- center -->
+        <div class="h-full news w-[38%] flex flex-col gap-4 latest overflow-hidden">
+            
+            <!-- <div class="h-[50%] w-full bg-gray-500"></div> -->
+             <img src="" class="h-[50%] w-full" alt="">
+            <a href="" class="title text-2xl overflow-hidden">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem, alias?
+            </a>
+            <hr>
+            <div class="description overflow-hidden">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nemo.</div>
+
+
+            
+        </div>
+
+        <!-- right  -->
+        <div class="h-full w-[28%] flex flex-col gap-4">
+            <div class="h-[40%] news w-full flex flex-col gap-2 latest overflow-hidden">
+                <!-- <div class="bg-gray-400 h-[80%]"> -->
+                    
+                <!-- </div> -->
+                <img src="" class="h-[80%]" alt="">
+    
+                <a href="" class="title overflow-hidden max-h-full py-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione repellat nemo similique </a>
+    
+            </div>
+    
+            <hr>
+    
+            <div class="h-[60%] w-full">
+                <div class="h-[20%] news latest flex justify-between w-full py-2 items-center gap-4 overflow-hidden">
+                    <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                     <img src="" class="h-full w-[30%]" alt="">
+                    <a href="" class="title overflow-hidden max-h-full py-2">Lorem ipsum dolor sit amet consectetur </a>
+                </div>
+                <hr>
+    
+                <div class="h-[20%] news latest flex justify-between w-full py-2 items-center gap-4 overflow-hidden">
+                    <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                    <img src="" class="h-full w-[30%]" alt="">
+    
+                    <a href="" class="title overflow-hidden max-h-full py-2">Lorem ipsum dolor sit amet consectetur </a>
+                </div>
+                <hr>
+    
+                <div class="latest h-[20%] news flex justify-between w-full py-2 items-center gap-4 overflow-hidden">
+                    <!-- <div class="h-full w-[30%]  bg-gray-500"></div> -->
+                    <img src="" class="h-full w-[30%]" alt="">
+                    <a href="" class="title overflow-hidden max-h-full py-2">Lorem ipsum dolor sit amet consectetur </a>
+                </div>
+                <hr>
+    
+               
+            </div>
+            </div>
+
+     
+        
+        
+     
+    </div>
+
+    <hr class=" bg-black">
+
+    <!-- Categoris -->
+
+    <div class="px-10 mt-24 text-xl mb-12">CATEGORIES</div>
+    <div class="bg-black min-h-screen flex items-center justify-center mb-10">
+        <div id="categorySection" class="relative show">
+            
+            <!-- Newspaper SVG -->
+            <img src="newspaper.svg" alt="">
+        
+    
+        <!-- Left Categories -->
+        <div class="category-item left" style="top: 17%; left: 20%; animation: float 3s ease-in-out infinite;">
+            <a href="../Business/index.html" class="category-btn left px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Business</a>
+        </div>
+        
+        <div class="category-item left" style="top: 40%; animation: float 3s ease-in-out infinite;">
+            <a href="../Entertainment/index.html" class="category-btn left px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Entertainment</a>
+            
+        </div>
+        <div class="category-item left" style="top: 63%; left:-10%;animation: float 3s ease-in-out infinite;">
+            <a href="../Health/index.html" class="category-btn left px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Health</a>
+            
+        </div>
+    
+        <!-- Right Categories -->
+        <div class="category-item right" style="top: 37%;animation: float 3s ease-in-out infinite;">
+            <a href="../Science/index.html" class="category-btn px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Science</a>
+            
+        </div>
+        <div class="category-item right" style="top: 60%;left:95%;animation: float 3s ease-in-out infinite;">
+            <a href="../Sports/index.html" class="category-btn px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Sports</a>
+            
+        </div>
+        <div class="category-item right" style="top: 83%; left:85%;animation: float 3s ease-in-out infinite;">
+            <a href="../Technology/index.html" class="category-btn px-6 py-2 text-white border border-white rounded-full hover:bg-white hover:text-black transition-colors">Technology</a>
+        
+        </div>
+    </div>
+    
+    </div>
+    
+    <hr>
+
+     <!-- Articles -->
+
+     <hr>
+
+     <h2 class="px-10 mt-20 text-xl">ARTICLES</h2>
+
+     <div class="h-content w-full mt-16 px-10 flex justify-between gap-10 mb-10">
+        <div class="flex flex-col h-full w-[40%] gap-4 ">
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+              
+                     <img src=""  alt="">
+      
+                    <a  href="" class="title max-h-14 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title  ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+         
+           </div>
+
+           <div class="flex flex-col h-full w-[40%] gap-4 ">
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+         
+           </div>
+        
+
+
+       
+          
+        
+           <div class="flex flex-col h-full w-[40%] gap-4 ">
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+         
+           </div>
+
+           <div class="flex flex-col h-full w-[40%] gap-4 ">
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src=""  alt="">
+                     <!-- </div> -->
+                    <a href="" class="title ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+            <div class="w-full h-[60%]">
+                <div class="w-full news h-full flex flex-col gap-2 article">
+                    <!-- <div class="w-full h-[80%] bg-gray-500"></div> -->
+
+                    <!-- <div class="w-full h-[80%]"> -->
+                     <img src="" alt="">
+                     <!-- </div> -->
+                    <a href="" class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, obcaecati.</a>
+                </div>
+            </div>
+
+         
+           </div>
+        
+     </div>
+
+     <!-- TOP VIDEOS -->
+
+     <hr>
+
+     <div class="top_videoes flex flex-col gap-5 w-full px-10 my-10 mt-20 ">
+        <h2 class="text-xl mb-5">TOP VIDEOS</h2>
+
+        <div class="h-[100vh] flex w-full p-10 gap-4 items-center  bg-gray-100">
+
+            <div class="h-full w-[50%] flex flex-col gap-3 ">
+
+                <div class="h-[80%] w-full bg-gray-400 mt-3">
+                    <iframe class="h-full w-full" src="https://www.youtube.com/embed/32kL-r0NgmI?si=a-VMa2dJ_aaqa_OY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="h-[20%] flex flex-col gap-3">
+                <div class="text-xl font-semibold" >India-Canada News | Did Trudeau Jump The Gun? India Slams Canada PM's 'Confession'
+                </div>
+
+                <div class="">Russian and Omani naval fleets have joined Iranian forces for a maritime drill in the Indian Ocean. </div>
+                </div>
+
+            </div>
+
+            <div class="h-full w-[50%] flex flex-col">
+                <div class="flex w-full h-[25%] justify-between gap-3 p-3 items-center">
+                    <div class="h-full w-[60%] bg-gray-400">
+                        <iframe class="h-full w-full" src="https://www.youtube.com/embed/EyE3FghBbNk?si=iIeUXddjvgWPIg-i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div >LIVE: How Did Israel Kill Sinwar? Netanyahu Declares "War Will Not End" | Vantage with Palki Sharma</div>
+                </div>
+
+                <div class="flex w-full h-[25%] justify-between gap-3 p-3 items-center">
+                    <div class="h-full w-[50%] bg-gray-400">
+                        <iframe class="h-full w-full" src="https://www.youtube.com/embed/ilfBnaZPlCI?si=OYMOuFthItYHWuNz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        
+                    </div>
+                    <div  >Sikh community rallies at India's Vancouver consulate amid foreign interference allegations</div>
+                </div>
+
+             
+
+                <div class="flex w-full h-[25%] justify-between gap-3 p-3 items-center">
+                    <div class="h-full w-[60%] bg-gray-400">
+                        <iframe class="h-full w-full" src="https://www.youtube.com/embed/wqAvmggJkWM?si=HqecIFdY7YUZPx3Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                 
+                    </div>
+                    <div > Did Trudeau Destroy India-Canada Relations? | Lawrence Bishnoi A Govt ‘Agent’!? | Akash Banerjee</div>
+                </div>
+
+                <div class="flex w-full h-[25%] justify-between gap-3 p-3 items-center">
+                    <div class="h-full w-[60%] bg-gray-400">
+                        <iframe class="h-full w-full" src="https://www.youtube.com/embed/zich-mmTHwc?si=dKZYqyCdEyv6PCyE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div >LIVE | Putin's Direct Message To Netanyahu After Russian Warships Dock Shield Iranian Ports</div>
+                </div>
+             
+            </div>
+
+
+        </div>
+
+     </div>
+
+     <!-- Footer -->
+
+     <div class="bg-[#333131]  w-full h-[40vh] text-white" style="font-family: 'Jaldi', sans-serif;">
+        <div class="w-full items-center flex justify-around h-full">
+        <div class="flex flex-col">
+            <div class="font-bold text-xl">About</div>
+            <div>Services</div>
+            <div>Pricing</div>
+            <div>Portfolio</div>
+            <div>Careers</div>
+        </div>
+        <div class="flex flex-col">
+            <div class="font-bold text-xl">Resources</div>
+            <div>Docs</div>
+            <div>Blog</div>
+            <div>eBooks</div>
+        </div>
+        <div class="flex flex-col">
+            <div class="font-bold text-xl">Contact</div>
+            <div>Help</div>
+            <div>Sales</div>
+            <div>Advertise</div>
+        </div>
+        </div>
+
+        <div class="w-full h-10 bg-[#333131] mt-1"></div>
+     </div>
+
+    
+    
+     <script>
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.querySelector('.langDropdown');
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chevronIcon = langButton.querySelector('svg:last-child');
+    
+            if (langDropdown.classList.contains('hidden')) {
+                // Close mobile menu if open
+                // Open language dropdown
+                langDropdown.classList.remove('hidden');
+                langDropdown.classList.add('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // Close language dropdown
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            // Close language dropdown if clicking outside
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
+            }
+        });
+    
+    </script>
+
+    <script>
+        const sliderContainer = document.querySelector('.slider-container');
+        const sliderItems = sliderContainer.querySelectorAll('.slider-item');
+        const prevBtn = sliderContainer.querySelector('.prev');
+        const nextBtn = sliderContainer.querySelector('.next');
+        const dotsContainer = sliderContainer.querySelector('.slider-dots');
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        // Create dots
+        sliderItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => showSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        function showSlide(index) {
+            if (isTransitioning || index === currentIndex) return;
+            isTransitioning = true;
+            
+            const currentSlide = sliderItems[currentIndex];
+            const nextSlide = sliderItems[index];
+            
+            currentSlide.classList.remove('active');
+            nextSlide.classList.add('active');
+            
+            dotsContainer.children[currentIndex].classList.remove('active');
+            dotsContainer.children[index].classList.add('active');
+            
+            currentIndex = index;
+
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 800);
+        }
+
+        function nextSlide() {
+            showSlide((currentIndex + 1) % sliderItems.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentIndex - 1 + sliderItems.length) % sliderItems.length);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Automatic slideshow
+        let slideInterval = setInterval(nextSlide, 3000);
+
+        // Pause slideshow on hover
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 3000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+    
+
+
+
+    </script>
+
+
+   <script src="./api.js" type="module"></script>
+   <script src="./source.js" type="module"></script>
+    
+</body>
+</html>

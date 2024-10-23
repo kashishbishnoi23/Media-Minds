@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entertainment Page</title>
+    <link rel="stylesheet" href="src/output.css">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+    .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-animate {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+
+        /* Glass effect for dropdowns */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smooth mobile menu animation */
+        .mobile-menu-enter {
+            transition: all 0.3s ease;
+            transform-origin: top;
+        }
+</style>
+
+<body style="font-family: Lora, serif;">
+
+
+     
+     <!-- navbar: -->
+    <nav style="font-family: 'Poppins', sans-serif;"
+    class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
+    <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
+    <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
+    <div class="nav-link cursor-pointer">About</div>
+    <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
+    <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
+    <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
+    <a href="../Entertainment/index.html" class="nav-link cursor-pointer">Entertainment</a>
+    <a href="../Technology/index.html" class="nav-link cursor-pointer">Technology</div>
+    <a href="../Science/index.html" class="nav-link cursor-pointer">Science</a>
+    <a href="../Community/index.html" class="nav-link cursor-pointer">Community</a>
+    <div class="nav-link cursor-pointer"></div>
+    <div class="relative">
+        <button id="langButton"
+            class="nav-link text-gray-100 hover:text-white transition-all duration-300 flex items-center space-x-2 text-sm">
+
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            <span>Language</span>
+            <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+
+        </button>
+            <!-- class="hidden absolute z-50 right-0 mt-2 w-48 glass-effect rounded-xl shadow-xl border border-gray-200 "> -->
+            <select id="languages"  class="langDropdown hidden ">
+
+            <div class="py-2">
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"  value="ar">Arabic</option>
+                
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="de">German</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="en">English</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="es">Spanish</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="fr">French</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="he">Hebrew</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="it">Italian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="nl">Dutch</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="no">Norwegian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="pt">Portuguese</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="ru">Russian</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="sv">Swedish</option>
+                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"value="ud">Urdu</option>
+                
+       
+            </div>
+        </select>
+    </div>
+    <div class="px-5 py-1 border border-white">Login/Sign Up</div>
+</nav>
+
+    <div class="mt-10">
+      
+
+        <hr>
+        <div class="main h-fit my-4 px-8">
+
+            <!-- breaking news: -->
+            <div class="h-[110vh] top_container flex w-full gap-12">
+
+                <div class="flex left_breaking  flex-col gap-5 w-[55%] h-full">
+                    <h2 class="text-xl">Featured</h2>
+
+
+                    <div class="breaking_news left_breaking w-full h-full flex flex-col gap-8">
+                        <img class="w-full h-[60%] bg-slate-400" src=""></img>
+
+                <a class="title news text-3xl"> </a>
+
+                        <div class="description text-xl text-gray-500"></div>
+                    </div>
+
+
+                </div>
+
+                <div class="right flex flex-col gap-5 w-[45%] h-full">
+                    <h2 class="text-xl">Opinion</h2>
+                    <div class="flex flex-col h-full w-full gap-10">
+
+                        <div class="breaking_news  right_breaking flex h-[15%] gap-5">
+                            <img src="" class="w-[15%] object-cover" alt="">
+                      
+
+                        <a class="title news p-2"> </a>
+                            
+                        </div>
+                        <div class="breaking_news  right_breaking  flex h-[15%] gap-5">
+                            <img src="" class="w-[15%] object-cover" alt="">
+                            <a class="title news p-2"> </a>
+                          
+                        </div>
+
+                        <div class="breaking_news  right_breaking flex h-[15%] gap-5">
+                            <img src="" class="w-[15%] object-cover" alt="">
+
+                            <a class="title news p-2"> </a>
+                            
+                        </div>
+
+                        <div class="breaking_news  right_breaking flex h-[15%] gap-5">
+                            <img src="" class="w-[15%] object-cover" alt="">
+
+                            <a class="title news p-2"> </a>
+                            
+                        </div>
+
+                        <div class="breaking_news  right_breaking flex h-[15%] gap-5">
+                            <img src="" class="w-[15%] object-cover" alt="">
+
+                            <a class="title news p-2"> </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- latest news:  -->
+            <div>
+                <h2 class="text-2xl my-10">LATEST</h2>
+
+                <div
+                    class="grid grid-cols-3 grid-cols-[auto, 1fr] h-fit grid-rows-[1fr, 1fr, 1fr] gap-10 text-lg text-gray-600">
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+                    <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg  border flex flex-col gap-2 border-gray-300 rounded-md p-4">
+
+                        <div class="w-full h-[70%]">
+                            <img src="" class="h-[100%] w-full" alt="">
+                        </div>
+                        <a class="title"> </a>
+                        
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+            <!-- Popular: -->
+
+            <div class="popular h-[150vh] w-full text-xl">
+                <h2 class="text-2xl my-8">POPULAR</h2>
+
+                <div class="popular_news flex gap-5 items-center h-[23%] p-4 border border-gray-300">
+
+                    <img class="h-full w-[25%] object-cover" src="" alt="">
+                    <a class="title w-[75%]"> </a>
+                    
+                </div>
+                <div class="popular_news flex gap-5 items-center h-[23%] p-4 border border-gray-300">
+                    <img class="h-full w-[25%] object-cover" src="" alt="">
+                     <a class="title w-[75%]"> </a>
+
+                </div>
+
+                <div class="popular_news flex gap-5 items-center h-[23%] p-4 border border-gray-300">
+                    <img class="h-full w-[25%] object-cover" src="" alt="">
+                     <a class="title w-[75%]"> </a>
+                </div>
+                <div class="popular_news flex gap-5 items-center h-[23%] p-4 border border-gray-300">
+                    <img class="h-full w-[25%] object-cover" src="" alt="">
+                    <a class="title w-[75%]"> </a>
+                </div>
+            </div>
+
+
+
+         
+
+
+
+        </div>
+
+        <hr>
+
+
+    </div>
+
+       <!-- Related -->
+
+       <div class="related h-[85vh] my-28 flex flex-col w-full bg-gray-300 p-10">
+        <h2 class="text-2xl mb-8">RELATED</h2>
+
+        <div class="flex h-full w-full justify-around">
+            <!-- prev button -->
+            <button class="prev relative right-3 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#5f6368">
+                    <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+                </svg>
+            </button>
+
+            <div class="relative text-white  overflow-hidden h-full w-full">
+               
+                <div class="slide gap-10 absolute left-[0%] flex h-full items-center w-full">
+
+                    <div class="h-full flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+                    <div class="h-full  flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="slide gap-10 absolute left-[100%] flex h-full items-center w-full">
+
+                    <div class="h-full flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+                    <div class="h-full  flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="slide gap-10 absolute left-[200%] flex h-full items-center w-full">
+
+                    <div class="h-full flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+                    <div class="h-full  flex flex-col gap-7 w-[50%]">
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                        <div class="related_news flex flex-col w-full h-[50%] justify-end ">
+                            <a class="title overflow-hidden text-ellipsis h-[40%] p-3 box-border bg-gradient-to-t from-black/90 to-black/10"></a>
+                        </div>
+
+                    </div>
+
+                </div>
+               
+
+            </div>
+
+             <!-- next button  -->
+        <button class="next relative left-3 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#5f6368">
+                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+            </svg>
+        </button>
+
+
+
+
+
+        </div>
+
+       
+
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-[#333131]  w-full h-[40vh] text-white" style="font-family: 'Jaldi', sans-serif;">
+        <div class="w-full items-center flex justify-around h-full">
+        <div class="flex flex-col">
+            <div class="font-bold ">About</div>
+            <div>Services</div>
+            <div>Pricing</div>
+            <div>Portfolio</div>
+            <div>Careers</div>
+        </div>
+        <div class="flex flex-col">
+            <div class="font-bold">Resources</div>
+            <div>Docs</div>
+            <div>Blog</div>
+            <div>eBooks</div>
+        </div>
+        <div class="flex flex-col">
+            <div class="font-bold ">Contact</div>
+            <div>Help</div>
+            <div>Sales</div>
+            <div>Advertise</div>
+        </div>
+        </div>
+
+        <div class="w-full h-10 bg-[#333131] mt-1"></div>
+     </div>
+
+
+
+
+    </div>
+    </div>
+
+    <script>
+    let prev = document.querySelector(".prev");
+    let next = document.querySelector(".next");
+
+    let slides = Array.from(document.querySelectorAll(".slide"));
+    let counter = 0;
+    
+
+// set the position of all the slides w.r.t parent element:
+
+
+
+function slide() {
+    slides.forEach((item, index) => {
+        item.style.transform = `translateX(-${counter * 100}%)`;
+        
+    })
+}
+
+
+    
+    
+    next.addEventListener('click', (event) => {
+        
+        
+        counter++;
+        if (counter <= 2) {
+            slide();
+        }
+    
+    
+    })
+    
+    
+    prev.addEventListener('click', () => {
+        
+        counter--;
+        slide();
+        
+        
+    })
+    </script>
+
+    <script defer type="module" src="source.js"></script>
+
+
+</body>
+
+</html>

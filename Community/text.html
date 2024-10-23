@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced LinkedIn-style Interface</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f3f2ef;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .post-button {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .post-button-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 35px;
+            padding: 12px 16px;
+            color: rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            width: 90%;
+            max-width: 552px;
+            margin: 32px auto;
+            border-radius: 8px;
+            padding: 24px;
+            animation: slideDown 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .user-details h4 {
+            font-weight: 600;
+        }
+
+        .user-details p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .post-textarea {
+            width: 100%;
+            min-height: 150px;
+            border: none;
+            resize: none;
+            margin-bottom: 16px;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .post-textarea:focus {
+            outline: none;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid #ddd;
+        }
+
+        .attachment-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .attachment-button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .post-submit {
+            background: #0a66c2;
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .post-submit:disabled {
+            background: #b2b2b2;
+            cursor: not-allowed;
+        }
+
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .post {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-menu {
+            position: relative;
+        }
+
+        .post-menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .post-menu-button:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .post-menu-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            display: none;
+            z-index: 100;
+            min-width: 150px;
+        }
+
+        .post-menu-content.active {
+            display: block;
+        }
+
+        .post-menu-item {
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .post-menu-item:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .post-content {
+            margin: 16px 0;
+            white-space: pre-wrap;
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 24px;
+            color: #666;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 14px;
+        }
+
+        .post-action:hover {
+            color: #0a66c2;
+        }
+
+        .timestamp {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .file-upload-container {
+            display: none;
+        }
+
+        .upload-preview {
+            margin: 16px 0;
+        }
+
+        .upload-preview img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .hashtag {
+            color: #0a66c2;
+            cursor: pointer;
+        }
+
+        .hashtag:hover {
+            text-decoration: underline;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 12px;
+            margin: 12px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .file-attachment {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .file-icon {
+            font-size: 24px;
+            color: #0a66c2;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .file-size {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .comments-section {
+            margin-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 16px;
+        }
+
+        .comment {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .comment-content {
+            flex: 1;
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .comment .avatar {
+            width: 40px;
+            height: 40px;
+        }
+
+        .comment-header {
+            margin-bottom: 4px;
+        }
+
+        .comment-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .comment-text {
+            font-size: 14px;
+        }
+
+        .comment-input-container {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .comment-input {
+            flex: 1;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            resize: none;
+            min-height: 40px;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: #0a66c2;
+        }
+
+        .reactions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .reaction-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0a66c2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+        }
+
+        .reaction-count {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+        }
+
+        .share-modal-content {
+            position: relative;
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 32px auto;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .share-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .share-option:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .share-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f3f2ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="post-button" id="openPostModal">
+            <div class="post-button-content">
+                <div class="avatar">
+                    <img src="/api/placeholder/48/48" alt="User">
+                </div>
+                <div class="post-input">Start a post</div>
+            </div>
+        </div>
+
+        <div class="posts-container" id="postsContainer">
+            <!-- Posts will be added here -->
+        </div>
+    </div>
+
+    <!-- Enhanced Post Creation Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create a post</h2>
+                <button class="close-button" id="closeModal">&times;</button>
+            </div>
+            
+            <div class="user-info">
+                <div class="avatar">
+                    <img src="/api/placeholder/48/48" alt="User">
+                </div>
+                <div class="user-details">
+                    <h4>John Doe</h4>
+                    <p>Post to anyone</p>
+                </div>
+            </div>
+
+            <textarea class="post-textarea" placeholder="What do you want to talk about?" id="postText"></textarea>
+
+            <div class="upload-preview" id="uploadPreview"></div>
+
+            <input type="file" id="fileInput" class="file-upload-container" multiple accept="image/*,.pdf,.doc,.docx">
+
+            <div class="modal-footer">
+                <div class="attachment-buttons">
+                    <button class="attachment-button" id="imageButton">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="attachment-button" id="fileButton">
+                        <i class="fas fa-file-alt"></i>
+                    </button>
+                </div>
+                <button class="post-submit" id="submitPost" disabled>Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Share post</h2>
+                <button class="close-button" id="closeShareModal">&times;</button>
+            </div>
+            <div class="share-options">
+                <div class="share-option">
+                    <div class="share-icon">
+                        <i class="fas fa-share-nodes"></i>
+                    </div>
+                    <div>
+                        <h4>Share via post</h4>
+                        <p>Share with your network</p>
+                    </div>
+                </div>
+                <div class="share-option">
+                    <div class="share-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div>
+                        <h4>Send via LinkedIn</h4>
+                        <p>Share privately with connections</p>
+                    </div>
+                </div>
+                <div class="share-option">
+                    <div class="share-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div>
+                        <h4>Copy link</h4>
+                        <p>Copy and share the post link</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const postModal = document.getElementById('postModal');
+        const openPostModal = document.getElementById('openPostModal');
+        const closeModal = document.getElementById('closeModal');
+        const postText = document.getElementById('postText');
+        const submitPost = document.getElementById('submitPost');
+        const postsContainer = document.getElementById('postsContainer');
+        const imageButton = document.getElementById('imageButton');
+        const fileButton = document.getElementById('fileButton');
+        const fileInput = document.getElementById('fileInput');
+        const uploadPreview = document.getElementById('uploadPreview');
+        const shareModal = document.getElementById('shareModal');
+        const closeShareModal = document.getElementById('closeShareModal');
+
+        openPostModal.addEventListener('click', () => {
+            postModal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', () => {
+            postModal.style.display = 'none';
+            resetPostModal();
+        });
+
+        postText.addEventListener('input', () => {
+            submitPost.disabled = postText.value.trim() === '';
+        });
+
+        submitPost.addEventListener('click', () => {
+            const content = postText.value.trim();
+            if (content) {
+                addPost(content);
+                postModal.style.display = 'none';
+                resetPostModal();
+            }
+        });
+
+        imageButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        uploadPreview.innerHTML = `<img src="${e.target.result}" alt="Uploaded Image">`;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    uploadPreview.innerHTML = `
+                        <div class="file-attachment">
+                            <div class="file-icon"><i class="fas fa-file"></i></div>
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${formatFileSize(file.size)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        closeShareModal.addEventListener('click', () => {
+            shareModal.style.display = 'none';
+        });
+
+        function resetPostModal() {
+            postText.value = '';
+            submitPost.disabled = true;
+            uploadPreview.innerHTML = '';
+            fileInput.value = '';
+        }
+
+        function addPost(content) {
+            const post = document.createElement('div');
+            post.className = 'post';
+            const hashtags = content.match(/#\w+/g) || [];
+            const contentWithHashtags = content.replace(/#\w+/g, match => `<span class="hashtag">${match}</span>`);
+            
+            post.innerHTML = `
+                <div class="post-header">
+                    <div class="user-info">
+                        <div class="avatar">
+                            <img src="/api/placeholder/48/48" alt="User">
+                        </div>
+                        <div class="user-details">
+                            <h4>John Doe</h4>
+                            <p class="timestamp">Just now</p>
+                        </div>
+                    </div>
+                    <div class="post-menu">
+                        <button class="post-menu-button"><i class="fas fa-ellipsis"></i></button>
+                        <div class="post-menu-content">
+                            <div class="post-menu-item"><i class="fas fa-bookmark"></i> Save</div>
+                            <div class="post-menu-item"><i class="fas fa-link"></i> Copy link</div>
+                            <div class="post-menu-item"><i class="fas fa-eye-slash"></i> Hide post</div>
+                            <div class="post-menu-item"><i class="fas fa-flag"></i> Report</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content">${contentWithHashtags}</div>
+                ${uploadPreview.innerHTML}
+                <div class="reactions">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-count">0</div>
+                </div>
+                <div class="post-stats">
+                    <span>0 comments</span>
+                    <span>0 reposts</span>
+                </div>
+                <div class="post-actions">
+                    <button class="post-action"><i class="far fa-thumbs-up"></i> Like</button>
+                    <button class="post-action"><i class="far fa-comment"></i> Comment</button>
+                    <button class="post-action"><i class="fas fa-retweet"></i> Repost</button>
+                    <button class="post-action share-button"><i class="far fa-paper-plane"></i> Send</button>
+                </div>
+                <div class="comments-section">
+                    <div class="comment-input-container">
+                        <div class="avatar">
+                            <img src="/api/placeholder/40/40" alt="User">
+                        </div>
+                        <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                        <button class="post-action comment-submit"><i class="far fa-paper-plane"></i> Submit</button>
+                    </div>
+                </div>
+            `;
+
+            postsContainer.prepend(post);
+            setupPostInteractions(post);
+        }
+        function setupPostInteractions(post) {
+            const commentInput = post.querySelector('.comment-input');
+            const commentSubmit = post.querySelector('.comment-submit');
+            const commentsSection = post.querySelector('.comments-section');
+
+            commentSubmit.addEventListener('click', () => {
+                const commentText = commentInput.value.trim();
+                if (commentText) {
+                    addComment(commentsSection, commentText);
+                    commentInput.value = '';
+                }
+            });
+        }
+
+        function addComment(commentsSection, commentText) {
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerHTML = `
+                <div class="avatar">
+                    <img src="/api/placeholder/40/40" alt="User">
+                </div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-name">John Doe</span>
+                        <span class="comment-time">Just now</span>
+                    </div>
+                    <div class="comment-text">${commentText}</div>
+                </div>
+            `;
+            commentsSection.appendChild(comment);
+        }
+        function setupPostInteractions(post) {
+            const menuButton = post.querySelector('.post-menu-button');
+            const menuContent = post.querySelector('.post-menu-content');
+            const shareButton = post.querySelector('.share-button');
+
+            menuButton.addEventListener('click', () => {
+                menuContent.classList.toggle('active');
+            });
+
+            shareButton.addEventListener('click', () => {
+                shareModal.style.display = 'block';
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!menuButton.contains(e.target) && !menuContent.contains(e.target)) {
+                    menuContent.classList.remove('active');
+                }
+            });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+    </script>
+</body>
+</html>

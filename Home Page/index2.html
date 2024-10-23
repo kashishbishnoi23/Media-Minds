@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Image Slider with Micro-interactions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            height: 600px;
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: scale(1.1);
+        }
+
+        .slider-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-out;
+        }
+/*
+        .slider-container:hover .slider-image {
+            transform: scale(1.05);
+        }
+*/
+        .slider-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-in-out 0.3s, transform 0.8s ease-in-out 0.3s;
+        }
+
+        .slider-item.active .slider-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slider-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slider-description {
+            font-size: 18px;
+            font-weight: 300;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .slider-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .slider-btn:active::after {
+            width: 100px;
+            height: 100px;
+        }
+
+        .slider-btn.prev {
+            left: 20px;
+        }
+
+        .slider-btn.next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .slider-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .slider-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .slider-dot.active {
+            animation: pulse 2s infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-item active">
+            <img src="https://picsum.photos/1000/600?random=1" alt="Slide 1" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Majestic Mountains</h2>
+                <p class="slider-description">Discover the breathtaking beauty of nature's skyscrapers.</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="https://picsum.photos/1000/600?random=2" alt="Slide 2" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Urban Exploration</h2>
+                <p class="slider-description">Uncover the hidden gems and vibrant culture of city life.</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="https://picsum.photos/1000/600?random=3" alt="Slide 3" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Serene Beaches</h2>
+                <p class="slider-description">Relax and unwind on the pristine shores of paradise.</p>
+            </div>
+        </div>
+        <div class="slider-item">
+            <img src="https://picsum.photos/1000/600?random=4" alt="Slide 4" class="slider-image">
+            <div class="slider-text">
+                <h2 class="slider-title">Lush Forests</h2>
+                <p class="slider-description">Immerse yourself in the rich biodiversity of ancient woodlands.</p>
+            </div>
+        </div>
+        <button class="slider-btn prev">&lt;</button>
+        <button class="slider-btn next">&gt;</button>
+        <div class="slider-dots"></div>
+    </div>
+
+    <script>
+        const sliderContainer = document.querySelector('.slider-container');
+        const sliderItems = sliderContainer.querySelectorAll('.slider-item');
+        const prevBtn = sliderContainer.querySelector('.prev');
+        const nextBtn = sliderContainer.querySelector('.next');
+        const dotsContainer = sliderContainer.querySelector('.slider-dots');
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        // Create dots
+        sliderItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => showSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        function showSlide(index) {
+            if (isTransitioning || index === currentIndex) return;
+            isTransitioning = true;
+            
+            const currentSlide = sliderItems[currentIndex];
+            const nextSlide = sliderItems[index];
+            
+            currentSlide.classList.remove('active');
+            nextSlide.classList.add('active');
+            
+            dotsContainer.children[currentIndex].classList.remove('active');
+            dotsContainer.children[index].classList.add('active');
+            
+            currentIndex = index;
+
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 800);
+        }
+
+        function nextSlide() {
+            showSlide((currentIndex + 1) % sliderItems.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentIndex - 1 + sliderItems.length) % sliderItems.length);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Automatic slideshow
+        let slideInterval = setInterval(nextSlide, 3000);
+
+        // Pause slideshow on hover
+        sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        sliderContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 3000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+    </script>
+</body>
+</html>
