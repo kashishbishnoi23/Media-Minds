@@ -69,7 +69,7 @@
         class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
         <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
         <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-        <div class="nav-link cursor-pointer">About</div>
+        <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
         <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
         <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
         <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
@@ -116,7 +116,7 @@
                 </div>
             </select>
         </div>
-        <div class="px-5 py-1 border border-white">Login/Sign Up</div>
+        <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
     </nav>
        
 
@@ -472,7 +472,7 @@ let next = document.querySelector(".next");
 
 function slide() {
     slides.forEach((item, index) => {
-        item.style.transform = `translateX(-${counter * 100}%)`;
+        item.style.transform = translateX(-${counter * 100}%);
         
     })
 }
