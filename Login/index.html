@@ -8,86 +8,82 @@
     <title>Website with Login & Registration Form Codehal</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./src/output.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <style>
-         .nav-link {
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 50%;
-            background-color: #ffffff;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dropdown-animate {
-            animation: fadeInUp 0.3s ease forwards;
-        }
-
-        /* Glass effect for dropdowns */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Smooth mobile menu animation */
-        .mobile-menu-enter {
-            transition: all 0.3s ease;
-            transform-origin: top;
-        }
-
-        .container{
-            margin-top:10px;
-        }
-    </style>
 
 </head>
 <body>
 
-    
-    <!-- navbar -->
-    <nav style="font-family: 'Poppins', sans-serif;"
-    class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
-    <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
-    <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-    <div class="nav-link cursor-pointer bg-black text-white">About</div>
-    <a href="../Business/index.html" class="nav-link cursor-pointer bg-black">Business</a>
-    <a href="../Sports/index.html" class="nav-link cursor-pointer bg-black">Sports</a>
-    <a href="../Health/index.html" class="nav-link cursor-pointer bg-black">Health</a>
-    <a href="../Entertainment/index.html" class="nav-link cursor-pointer bg-black">Entertainment</a>
-    <a href="../Technology/index.html" class="nav-link cursor-pointer bg-black">Technology</div>
-    <a href="../Science/index.html" class="nav-link cursor-pointer bg-black">Science</a>
-    <a href="../Community/index.html" class="nav-link cursor-pointer bg-black">Community</a>
-    <div class="nav-link cursor-pointer"></div>
+    <!-- <header class="header">
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Categories</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <form action="#" class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class='bx bx-search'></i></button>
+        </form>
+    </header> -->
+    <nav  style="font-family: 'Poppins', sans-serif;"
+     class="w-full z-20 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
+     <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
+     <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
+     <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
+     <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
+     <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
+     <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
+     <a href="../Entertainment/index.html" class="nav-link cursor-pointer">Entertainment</a>
+     <a href="../Technology/index.html" class="nav-link cursor-pointer">Technology</a>
+     <a href="../Science/index.html" class="nav-link cursor-pointer">Science</a>
+     <a href="../Community/index.html" class="nav-link cursor-pointer">Community</a>
+     <div class="nav-link cursor-pointer"></div>
+     <div class="relative">
+         <button id="langButton"
+             class="nav-link text-gray-100 hover:text-white transition-all duration-300 flex items-center space-x-2 text-sm">
  
-    <div class="px-5 py-1 border bg-black text-white border-white">Login/Sign Up</div>
-</nav>
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+             </svg>
+             <span>Language</span>
+             <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                 viewBox="0 0 24 24">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+             </svg>
+ 
+         </button>
+             <!-- class="hidden absolute z-50 right-0 mt-2 w-48 glass-effect rounded-xl shadow-xl border border-gray-200 "> -->
+             <select id="languages"  class="langDropdown hidden ">
+ 
+             <div class="py-2">
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"  value="ar">Arabic</option>
+                 
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="de">German</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="en">English</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="es">Spanish</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="fr">French</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="he">Hebrew</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="it">Italian</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="nl">Dutch</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="no">Norwegian</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="pt">Portuguese</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="ru">Russian</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="sv">Swedish</option>
+                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"value="ud">Urdu</option>
+                 
+        
+             </div>
+         </select>
+     </div>
+     <div class="px-5 py-1 border border-white">Login</div>
+ </nav>
 
+    <div class="background"></div>
 
-    <div class="container ">
+    <div class="container">
         <div class="content">
             <h2 class="logo"><i class='bx bxl-firebase' ></i>Media Minds</h2>
 
@@ -104,9 +100,10 @@
                 </div>
             </div>
         </div>
-        <div class="logreg-box w-[40vw] ">
-            <div class="form-box  login">
-                <form action="#">
+        <div class="logreg-box">
+            <div class="form-box login">
+                <form name="submit-to-google-sheet" class="login-form">
+                    
                     <h2>Sign In</h2>
 
                     <div class="input-box">
@@ -157,7 +154,7 @@
         
                             <div class="remember-forgot">
                                 <label><input type="checkbox">I agree to the terms & conditions</label>
-                                <a href="#">Forgot Password</a>
+                                <!-- <a href="#">Forgot Password</a> -->
                             </div>
                             <button type="submit" class="btn">Sign Up</button>
         
@@ -169,18 +166,36 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyzblQ8RjjmDjHOOm2q9cqGt019DMQ_TJppfSq7fducMfbgOBSbpjS-1LQPuXk9Gb6Eiw/exec'
-        const form = document.forms['submit-to-google-sheet']
-      
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script>
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.querySelector('.langDropdown');
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chevronIcon = langButton.querySelector('svg:last-child');
+    
+            if (langDropdown.classList.contains('hidden')) {
+                // Close mobile menu if open
+                // Open language dropdown
+                langDropdown.classList.remove('hidden');
+                langDropdown.classList.add('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // Close language dropdown
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            // Close language dropdown if clicking outside
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
+            }
+        });
+    
+    </script>
     
 </body>
 </html>
