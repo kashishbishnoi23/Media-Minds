@@ -7,6 +7,42 @@
     <title>Community </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-animate {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+
+        /* Glass effect for dropdowns */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smooth mobile menu animation */
+        .mobile-menu-enter {
+            transition: all 0.3s ease;
+            transform-origin: top;
+        }
     </style>
 
     <link rel="stylesheet" href="./src/output.css">
@@ -19,7 +55,7 @@
      class="w-full z-20 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
      <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
      <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-     <div class="nav-link cursor-pointer">About</div>
+     <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
      <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
      <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
      <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
@@ -66,7 +102,7 @@
              </div>
          </select>
      </div>
-     <div class="px-5 py-1 border border-white">Login/Sign Up</div>
+     <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
  </nav>
 
 
@@ -87,7 +123,7 @@
                 <div class="text-xl text-slate-300">Join our community to discuss the latest stories, share your
                     insights, and connect with fellow readers!</div>
 
-            <a  href="page.html"> <button class="bg-black text-white text-xs font-medium py-3 px-4 rounded-full">JOIN NOW</button> </a>
+            <a  href="page1.html"> <button class="bg-black text-white text-xs font-medium py-3 px-4 rounded-full">JOIN NOW</button> </a>
 
             </div>
         </div>
@@ -135,6 +171,36 @@
        
 
     </div>
+    <script>
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.querySelector('.langDropdown');
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chevronIcon = langButton.querySelector('svg:last-child');
+    
+            if (langDropdown.classList.contains('hidden')) {
+                // Close mobile menu if open
+                // Open language dropdown
+                langDropdown.classList.remove('hidden');
+                langDropdown.classList.add('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // Close language dropdown
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            // Close language dropdown if clicking outside
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
+            }
+        });
+    
+    </script>
 
     
 
