@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>About Us</title>
- 
-    <link rel="stylesheet" href="./src/output.css">
+    <title>Media Minds - News</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         /* Basic Styles */
         body {
@@ -16,9 +17,28 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-      
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
        
-    
         .container {
             width: 80%;
             margin: 20px auto;
@@ -47,9 +67,6 @@
             height: 200px;
             object-fit: cover;
             transition: transform 0.2s; /* Transition for smooth scaling */
-        }
-        .article:hover img {
-            transform: scale(1.05); /* Scale image on hover */
         }
         .article-content {
             padding: 15px;
@@ -133,18 +150,18 @@
         .about-section p {
             text-align: center;
         }
+
+        
     </style>
 </head>
 <body>
- 
 
-
-    <!-- navbar -->
+    <!-- Header Section -->
     <nav style="font-family: 'Poppins', sans-serif;"
-    class="w-full z-10 py-2 sticky top-0  px-12 bg-black justify-between flex text-white items-center text-sm">
+    class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
     <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
     <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-    <a href="../About Us/About Us.html" class="nav-link cursor-pointer">About</a>
+    <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
     <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
     <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
     <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
@@ -173,7 +190,7 @@
 
             <div class="py-2">
                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"  value="ar">Arabic</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="zh">Chinese</option>
+                
                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="de">German</option>
                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="en">English</option>
                 <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="es">Spanish</option>
@@ -191,23 +208,23 @@
             </div>
         </select>
     </div>
-   <a href="../Login/index.html"  class="px-5 py-1 border cursor-pointer border-white">Login/Sign Up </a>
+    <!-- <div class="px-5 py-1 border border-white">Login/Sign Up</div> -->
+     <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
 </nav>
- 
 
     <!-- About Media Minds Section -->
-    <div class="about-section flex flex-col gap-5 items-center px-32 bg-black">
-        <h2 class="font-bold text-3xl">About Media Minds</h2>
+    <div class="about-section">
+        <h2>About Media Minds</h2>
         <p>Media Minds is dedicated to bringing you the latest news and insights from around the world. Our team of experienced journalists and writers are committed to delivering accurate and engaging content that informs and inspires. Stay connected with us for real-time updates and in-depth analysis on various topics including technology, lifestyle, and current events.</p>
     </div>
 
-    <!-- Members Section -->
-    <div class="container flex flex-col gap-5">
-        <center><h2 class="text-3xl font-bold">Members</h2></center>
+    <!-- Recent Articles Section -->
+    <div class="container">
+        <center><h2>Recent Articles</h2></center>
         <div class="recent-articles">
             <!-- Article 1 -->
             <div class="article">
-                <center><img src="img1.jpg" alt="Article Title 1"></center>
+                <center><img src="images" alt="Article Title 1"></center>
                 <div class="article-content">
                     <center><h3>CEO</h3></center>
                     <p>CEO of Media Minds, a leading digital media company dedicated to delivering high-quality content across various platforms. With over 15 years of experience in the media industry, Jane has successfully transformed Media Minds into a dynamic player in the digital landscape.</p>
@@ -217,7 +234,7 @@
 
             <!-- Article 2 -->
             <div class="article">
-                <center><img src="img3.jpg" alt="Article Title 2"></center>
+                <center><img src="i2.jpg" alt="Article Title 2"></center>
                 <div class="article-content">
                     <center><h3>Director</h3></center>
                     <p> Director of Media Minds, bringing a wealth of expertise in content strategy and digital marketing to the team. With over a decade of experience in the media industry, John has played a pivotal role in shaping the company's vision and ensuring its alignment with evolving market trends.</p>
@@ -227,7 +244,7 @@
 
             <!-- Article 3 -->
             <div class="article">
-                <center><img src="img4.jpeg" alt="Article Title 3"></center>
+                <center><img src="i3.avif" alt="Article Title 3"></center>
                 <div class="article-content">
                     <center><h3>Head</h3></center>
                     <p> Head of Media Minds, where she leads the strategic direction and operational execution of the company's media initiatives. With over 15 years of experience in the media landscape, Emily is renowned for her innovative thinking and ability to navigate the complexities of digital transformation.</p>
@@ -237,7 +254,7 @@
 
             <!-- Article 4 -->
             <div class="article">
-                <center><img src="https://imgs.search.brave.com/UyGmFea0SC47LK_nVP4FePhsBbNlWVYvU3fWFC2TyVM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9wcm9mZXNzaW9u/YWwtcG9ydHJhaXQt/Y29uZmlkZW50LWJ1/c2luZXNzd29tYW4t/d2l0aC1hcm1zLWNy/b3NzZWQtbmV1dHJh/bC1iYWNrZ3JvdW5k/XzEyNDc4NTYtMTU1/NTkuanBnP3NlbXQ9/YWlzX2h5YnJpZA" alt="Article Title 4"></center>
+                <center><img src="i`4.jpg" alt="Article Title 4"></center>
                 <div class="article-content">
                     <center><h3>Executive Director</h3></center>
                     <p>Executive Head of Media Minds, overseeing the company's strategic initiatives and driving its vision to become a leader in innovative media solutions. With a career spanning over two decades, Michael has extensive experience in media management, content creation, and digital strategy.</p>
@@ -275,9 +292,36 @@
         <p>&copy; 2024 Media Minds. All rights reserved.</p>
     </footer>
 
+    <script>
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.querySelector('.langDropdown');
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chevronIcon = langButton.querySelector('svg:last-child');
+    
+            if (langDropdown.classList.contains('hidden')) {
+                // Close mobile menu if open
+                // Open language dropdown
+                langDropdown.classList.remove('hidden');
+                langDropdown.classList.add('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // Close language dropdown
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            // Close language dropdown if clicking outside
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
+            }
+        });
+    
+    </script>
+
 </body>
 </html>
-
-
-
-
