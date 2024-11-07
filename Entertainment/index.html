@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entertainment Page</title>
+    <title>Health Page</title>
     <link rel="stylesheet" href="src/output.css">
 </head>
 
@@ -61,14 +61,12 @@
 
 <body style="font-family: Lora, serif;">
 
-
-     
      <!-- navbar: -->
     <nav style="font-family: 'Poppins', sans-serif;"
     class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
     <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
     <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-    <div class="nav-link cursor-pointer">About</div>
+    <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
     <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
     <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
     <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
@@ -115,14 +113,14 @@
             </div>
         </select>
     </div>
-    <div class="px-5 py-1 border border-white">Login/Sign Up</div>
+    <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
 </nav>
 
     <div class="mt-10">
-      
+        
 
         <hr>
-        <div class="main h-fit my-4 px-8">
+        <div class="main h-fit my-4 px-8 ">
 
             <!-- breaking news: -->
             <div class="h-[110vh] top_container flex w-full gap-12">
@@ -187,8 +185,7 @@
             <div>
                 <h2 class="text-2xl my-10">LATEST</h2>
 
-                <div
-                    class="grid grid-cols-3 grid-cols-[auto, 1fr] h-fit grid-rows-[1fr, 1fr, 1fr] gap-10 text-lg text-gray-600">
+                <div class="grid grid-cols-3 grid-cols-[auto, 1fr] h-fit grid-rows-[1fr, 1fr, 1fr] gap-10 text-lg text-gray-600">
 
                     <div class="latest_news hover:scale-105 transition-all duration-500 ease-in-out shadow-lg border flex flex-col gap-2 border-gray-300 rounded-md p-4">
 
@@ -429,6 +426,7 @@
     </div>
 
     <!-- Footer -->
+     
     <div class="bg-[#333131]  w-full h-[40vh] text-white" style="font-family: 'Jaldi', sans-serif;">
         <div class="w-full items-center flex justify-around h-full">
         <div class="flex flex-col">
@@ -458,12 +456,45 @@
 
 
 
+
     </div>
     </div>
 
+
     <script>
-    let prev = document.querySelector(".prev");
-    let next = document.querySelector(".next");
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.querySelector('.langDropdown');
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const chevronIcon = langButton.querySelector('svg:last-child');
+    
+            if (langDropdown.classList.contains('hidden')) {
+                // Close mobile menu if open
+                // Open language dropdown
+                langDropdown.classList.remove('hidden');
+                langDropdown.classList.add('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                // Close language dropdown
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        document.addEventListener('click', (e) => {
+            // Close language dropdown if clicking outside
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.add('hidden');
+                langDropdown.classList.remove('dropdown-animate');
+                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
+            }
+        });
+    
+    </script>
+    
+    <script>
+        let prev = document.querySelector(".prev");
+let next = document.querySelector(".next");
 
     let slides = Array.from(document.querySelectorAll(".slide"));
     let counter = 0;
