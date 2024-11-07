@@ -106,3 +106,5 @@ export async function fetch_related_news() {
         return await fetchAndStoreNews(url, 'Business', 'related_news');  // Store in 'business' collection
     }
 }
+
+// An API, or Application Programming Interface, is a set of rules and protocols that allows different software applications to communicate with each other. It acts as an intermediary, enabling data exchange and functionality between systems, which can enhance integration and streamline processes. APIs are essential in modern software development, allowing developers to build applications more efficiently by leveraging existing services and data.
