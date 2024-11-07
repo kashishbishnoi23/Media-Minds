@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <link rel="stylesheet" href="page1.css">
+</head>
+<body>
+    <div class="container">
+        <h1><u>Community Page</u></h1>
+        
+        <form id="postForm">
+            <textarea id="comment" placeholder="Write your comment here..." required></textarea>
+            <input type="file" id="imageUpload" accept="image/*">
+            <button type="submit">Post</button>
+        </form>
+
+        <div class="posts" id="postsContainer">
+            <!-- Posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="page1.js"></script>
+</body>
+</html>
