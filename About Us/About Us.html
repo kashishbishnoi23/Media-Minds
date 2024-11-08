@@ -3,325 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Media Minds - News</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <style>
-        /* Basic Styles */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+    <title>About Us - MediaMinds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'slide-up': 'slideUp 0.5s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
         }
-        .nav-link {
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 50%;
-            background-color: #ffffff;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-       
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .recent-articles {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .article {
-            flex-basis: 48%; /* Adjust width for 2 articles per row */
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        .article:hover {
-            transform: scale(1.02);
-        }
-        .article img {
-            width: 50%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.2s; /* Transition for smooth scaling */
-        }
-        .article-content {
-            padding: 15px;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        /* Feedback Form Styles */
-        .feedback-section {
-            background: #f9f9f9;
-            padding: 20px;
-            margin-top: 30px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .feedback-section h2 {
-            text-align: center;
-        }
-        .feedback-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .feedback-section input, 
-        .feedback-section textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .feedback-section button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .feedback-section button:hover {
-            background-color: #555;
-        }
-        /* Rating Styles */
-        .rating {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        .rating input {
-            display: none;
-        }
-        .rating label {
-            cursor: pointer;
-            font-size: 2rem; /* Adjust size for stars */
-            color: #ccc;
-        }
-        .rating input:checked ~ label {
-            color: gold; /* Color for selected stars */
-        }
-        .rating label:hover,
-        .rating label:hover ~ label {
-            color: gold; /* Color on hover */
-        }
-        /* About Media Minds Styles */
-        .about-section {
-            background: #f9f9f9;
-            padding: 15px;
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .about-section h2 {
-            text-align: center;
-        }
-        .about-section p {
-            text-align: center;
-        }
-
-        
-    </style>
+    </script>
 </head>
-<body>
-
-    <!-- Header Section -->
+<body class="bg-gray-50 font-sans">
     <nav style="font-family: 'Poppins', sans-serif;"
-    class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
-    <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
-    <a href="../Home Page/index.html" ><img class="h-14" src="../Home Page/black-logo.jpeg" alt=""> </a>
-    <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
-    <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
-    <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
-    <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
-    <a href="../Entertainment/index.html" class="nav-link cursor-pointer">Entertainment</a>
-    <a href="../Technology/index.html" class="nav-link cursor-pointer">Technology</div>
-    <a href="../Science/index.html" class="nav-link cursor-pointer">Science</a>
-    <a href="../Community/index.html" class="nav-link cursor-pointer">Community</a>
-    <div class="nav-link cursor-pointer"></div>
-    <div class="relative">
-        <button id="langButton"
-            class="nav-link text-gray-100 hover:text-white transition-all duration-300 flex items-center space-x-2 text-sm">
+        class="w-full z-10 sticky top-0 py-2 px-12 bg-black justify-between flex text-white items-center text-sm">
+        <!-- <div class="logo"><img class="w-5" src="./images/align-left.png" alt=""></div> -->
+        <a href="../Home Page/index.html"><img class="h-14" src="./black-logo.jpeg" alt=""> </a>
+        <a href="../about/about2.html" class="nav-link cursor-pointer">About</a>
+        <a href="../Business/index.html" class="nav-link cursor-pointer">Business</a>
+        <a href="../Sports/index.html" class="nav-link cursor-pointer">Sports</a>
+        <a href="../Health/index.html" class="nav-link cursor-pointer">Health</a>
+        <a href="../Entertainment/index.html" class="nav-link cursor-pointer">Entertainment</a>
+        <a href="../Technology/index.html" class="nav-link cursor-pointer">Technology</div>
+            <a href="../Science/index.html" class="nav-link cursor-pointer">Premium</a>
+            <a href="../Community/index.html" class="nav-link cursor-pointer">Community</a>
+            <div class="nav-link cursor-pointer"></div>
+            <div class="relative">
+                <button id="langButton"
+                    class="nav-link text-gray-100 hover:text-white transition-all duration-300 flex items-center space-x-2 text-sm">
 
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-            </svg>
-            <span>Language</span>
-            <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span>Language</span>
+                    <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
 
-        </button>
-            <!-- class="hidden absolute z-50 right-0 mt-2 w-48 glass-effect rounded-xl shadow-xl border border-gray-200 "> -->
-            <select id="languages"  class="langDropdown hidden ">
+                </button>
+                <!-- class="hidden absolute z-50 right-0 mt-2 w-48 glass-effect rounded-xl shadow-xl border border-gray-200 "> -->
+                <select id="languages" class="langDropdown hidden ">
 
-            <div class="py-2">
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"  value="ar">Arabic</option>
-                
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="de">German</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="en">English</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="es">Spanish</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="fr">French</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="he">Hebrew</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="it">Italian</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="nl">Dutch</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="no">Norwegian</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="pt">Portuguese</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="ru">Russian</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl" value="sv">Swedish</option>
-                <option class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"value="ud">Urdu</option>
-                
-       
+                    <div class="py-2">
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="ar">Arabic</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="zh">Chinese</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="de">German</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="en">English</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="es">Spanish</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="fr">French</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="he">Hebrew</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="it">Italian</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="nl">Dutch</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="no">Norwegian</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="pt">Portuguese</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="ru">Russian</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="sv">Swedish</option>
+                        <option
+                            class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl"
+                            value="ud">Urdu</option>
+
+
+                    </div>
+                </select>
             </div>
-        </select>
+            <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
+    </nav>
+    <!-- Hero Section with Parallax Effect -->
+    <div class="relative h-[500px] overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504711434969-e33886168f5c')] opacity-20 bg-cover bg-center"></div>
+        </div>
+        <div class="relative h-full flex items-center justify-center text-center px-4">
+            <div class="animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">About Media Minds</h1>
+                <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Delivering accurate, unbiased news to keep you informed about what matters most.
+                </p>
+            </div>
+        </div>
     </div>
-    <!-- <div class="px-5 py-1 border border-white">Login/Sign Up</div> -->
-     <a href="../Login/login.html" class="px-5 py-1 border border-white" >Login</a>
-</nav>
 
-    <!-- About Media Minds Section -->
-    <div class="about-section">
-        <h2>About Media Minds</h2>
-        <p>Media Minds is dedicated to bringing you the latest news and insights from around the world. Our team of experienced journalists and writers are committed to delivering accurate and engaging content that informs and inspires. Stay connected with us for real-time updates and in-depth analysis on various topics including technology, lifestyle, and current events.</p>
-    </div>
-
-    <!-- Recent Articles Section -->
-    <div class="container">
-        <center><h2>Recent Articles</h2></center>
-        <div class="recent-articles">
-            <!-- Article 1 -->
-            <div class="article">
-                <center><img src="images" alt="Article Title 1"></center>
-                <div class="article-content">
-                    <center><h3>CEO</h3></center>
-                    <p>CEO of Media Minds, a leading digital media company dedicated to delivering high-quality content across various platforms. With over 15 years of experience in the media industry, Jane has successfully transformed Media Minds into a dynamic player in the digital landscape.</p>
-                    
+    <!-- Mission Statement with Visual Elements -->
+    <div class="container mx-auto px-4 py-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Our Mission</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        Founded in 2024, NewsDaily is committed to delivering accurate, timely, and unbiased news coverage. We believe in the power of journalism to inform, educate, and inspire positive change in society.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="h-1 w-20 bg-gray-800"></div>
+                        <span class="text-gray-500 italic">Est. 2024</span>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Article 2 -->
-            <div class="article">
-                <center><img src="i2.jpg" alt="Article Title 2"></center>
-                <div class="article-content">
-                    <center><h3>Director</h3></center>
-                    <p> Director of Media Minds, bringing a wealth of expertise in content strategy and digital marketing to the team. With over a decade of experience in the media industry, John has played a pivotal role in shaping the company's vision and ensuring its alignment with evolving market trends.</p>
-                    
-                </div>
-            </div>
-
-            <!-- Article 3 -->
-            <div class="article">
-                <center><img src="i3.avif" alt="Article Title 3"></center>
-                <div class="article-content">
-                    <center><h3>Head</h3></center>
-                    <p> Head of Media Minds, where she leads the strategic direction and operational execution of the company's media initiatives. With over 15 years of experience in the media landscape, Emily is renowned for her innovative thinking and ability to navigate the complexities of digital transformation.</p>
-                    
-                </div>
-            </div>
-
-            <!-- Article 4 -->
-            <div class="article">
-                <center><img src="i`4.jpg" alt="Article Title 4"></center>
-                <div class="article-content">
-                    <center><h3>Executive Director</h3></center>
-                    <p>Executive Head of Media Minds, overseeing the company's strategic initiatives and driving its vision to become a leader in innovative media solutions. With a career spanning over two decades, Michael has extensive experience in media management, content creation, and digital strategy.</p>
-                    
+                <div class="relative">
+                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a" 
+                             alt="Newsroom" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-gray-900 rounded-lg"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Feedback Section -->
-    <div class="feedback-section">
-        <h2>We Value Your Feedback!</h2>
-        <form action="submit_feedback.php" method="post">
-            <div class="rating">
-                <input type="radio" id="star5" name="rating" value="5">
-                <label for="star5">★</label>
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4">★</label>
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3">★</label>
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2">★</label>
-                <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1">★</label>
+    <!-- Team Section with Improved Cards -->
+    <div class="bg-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Meet Our Team</h2>
+                <div class="w-20 h-1 bg-gray-800 mx-auto"></div>
             </div>
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="feedback" rows="5" placeholder="Your Feedback" required></textarea>
-            <button type="submit">Submit Feedback</button>
-        </form>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member Cards (Updated Design) -->
+                <div class="group">
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="relative mb-6">
+                            <div class="w-32 h-32 mx-auto">
+                                <img src="https://randomuser.me/api/portraits/men/1.jpg" 
+                                     alt="John Smith" 
+                                     class="w-full h-full rounded-full object-cover ring-4 ring-gray-100">
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                <div class="bg-gray-900 text-white px-4 py-1 rounded-full text-sm">Editor-in-Chief</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">John Smith</h3>
+                        <p class="text-gray-600 text-center text-sm">Ph.D. in Journalism<br>15+ years experience</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="relative mb-6">
+                            <div class="w-32 h-32 mx-auto">
+                                <img src="https://randomuser.me/api/portraits/women/2.jpg" 
+                                     alt="Sarah Johnson" 
+                                     class="w-full h-full rounded-full object-cover ring-4 ring-gray-100">
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                <div class="bg-gray-900 text-white px-4 py-1 rounded-full text-sm">Senior Reporter</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Sarah Johnson</h3>
+                        <p class="text-gray-600 text-center text-sm">M.A. in Political Science<br>10+ years experience</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="relative mb-6">
+                            <div class="w-32 h-32 mx-auto">
+                                <img src="https://randomuser.me/api/portraits/men/3.jpg" 
+                                     alt="Michael Chen" 
+                                     class="w-full h-full rounded-full object-cover ring-4 ring-gray-100">
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                <div class="bg-gray-900 text-white px-4 py-1 rounded-full text-sm">Tech Editor</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Michael Chen</h3>
+                        <p class="text-gray-600 text-center text-sm">B.S. in Computer Science<br>8+ years experience</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <div class="relative mb-6">
+                            <div class="w-32 h-32 mx-auto">
+                                <img src="https://randomuser.me/api/portraits/women/4.jpg" 
+                                     alt="Emily Rodriguez" 
+                                     class="w-full h-full rounded-full object-cover ring-4 ring-gray-100">
+                            </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                <div class="bg-gray-900 text-white px-4 py-1 rounded-full text-sm">Culture Editor</div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Emily Rodriguez</h3>
+                        <p class="text-gray-600 text-center text-sm">M.F.A. in Journalism<br>12+ years experience</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat similar structure for other team members -->
+            </div>
+        </div>
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Media Minds. All rights reserved.</p>
+    <!-- Stats Section with Animation -->
+    <div class="bg-gray-900 text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-300">1M+</div>
+                    <div class="text-gray-400 uppercase tracking-wide">Monthly Readers</div>
+                </div>
+                <div class="text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-300">50+</div>
+                    <div class="text-gray-400 uppercase tracking-wide">Expert Writers</div>
+                </div>
+                <div class="text-center transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-300">24/7</div>
+                    <div class="text-gray-400 uppercase tracking-wide">News Coverage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Form with Enhanced UI -->
+    <div class="bg-white py-20">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">We Value Your Feedback</h2>
+                <p class="text-gray-600">Help us improve our service by sharing your thoughts</p>
+            <div class="flex items-center justify-center mt-2 space-x-2 mb-6">
+                <button class="star-btn" data-rating="1">
+                    <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </button>
+                <button class="star-btn" data-rating="2">
+                    <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </button>
+                <button class="star-btn" data-rating="3">
+                    <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </button>
+                <button class="star-btn" data-rating="4">
+                    <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </button>
+                <button class="star-btn" data-rating="5">
+                    <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-sm text-gray-500 text-center mb-8">Click to rate your experience</p>
+            </div>
+            <form action="submit_feedback.php" method="post" class="space-y-6 bg-gray-50 p-8 rounded-xl shadow-lg">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" 
+                               name="name"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-200"
+                               placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input type="email" 
+                               name="email"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-200"
+                               placeholder="Your Email">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <textarea 
+                        name="feedback"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-200" 
+                        rows="5" 
+                        placeholder="Your Feedback...."></textarea>
+                </div>
+                <!-- More form fields... -->
+                <button type="submit" 
+                        class="w-full bg-gray-900 text-white py-4 px-6 rounded-lg hover:bg-gray-800 transform hover:-translate-y-1 transition duration-200">
+                    Send Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Values Section with Interactive Cards -->
+    <div class="bg-gray-50 py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Our Core Values</h2>
+                <div class="w-20 h-1 bg-gray-800 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <div class="bg-gray-900 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Accuracy</h3>
+                    <p class="text-gray-600 text-center">We verify all information before publication to ensure accuracy.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <div class="bg-gray-900 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Integrity</h3>
+                    <p class="text-gray-600 text-center">We maintain high ethical standards and transparency in our reporting.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <div class="bg-gray-900 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bolt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Speed</h3>
+                    <p class="text-gray-600 text-center">We deliver breaking news quickly while maintaining our quality standards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-gray-900 text-white py-12" style="font-family: 'Jaldi', sans-serif;">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold mb-4">Media Minds</h2>
+                    <p class="text-gray-400">Your trusted source for breaking news, in-depth analysis, and unbiased
+                        reporting.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                    fill-rule="evenodd" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">News Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Politics</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Technology</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Business</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Science</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Health</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">About
+                                Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact
+                                Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Subscribe</h3>
+                    <p class="text-gray-400 mb-4">Stay updated with our latest news and offers.</p>
+                    <form class="flex flex-col sm:flex-row">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-gray-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 mb-2 sm:mb-0">
+                        <button type="submit"
+                            class="bg-slate-600 text-white px-4 py-2 rounded-r-md hover:bg-slate-700 transition-colors duration-300">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 border-t border-gray-800 pt-8">
+            <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">&copy; 2023 MediaMinds. All rights reserved.</p>
+                <div class="mt-4 sm:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 mr-4">Privacy
+                        Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of
+                        Service</a>
+                </div>
+            </div>
+        </div>
     </footer>
-
-    <script>
-        const langButton = document.getElementById('langButton');
-        const langDropdown = document.querySelector('.langDropdown');
-        langButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const chevronIcon = langButton.querySelector('svg:last-child');
-    
-            if (langDropdown.classList.contains('hidden')) {
-                // Close mobile menu if open
-                // Open language dropdown
-                langDropdown.classList.remove('hidden');
-                langDropdown.classList.add('dropdown-animate');
-                chevronIcon.style.transform = 'rotate(180deg)';
-            } else {
-                // Close language dropdown
-                langDropdown.classList.add('hidden');
-                langDropdown.classList.remove('dropdown-animate');
-                chevronIcon.style.transform = 'rotate(0deg)';
-            }
-        });
-        document.addEventListener('click', (e) => {
-            // Close language dropdown if clicking outside
-            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
-                langDropdown.classList.add('hidden');
-                langDropdown.classList.remove('dropdown-animate');
-                langButton.querySelector('svg:last-child').style.transform = 'rotate(0deg)';
-            }
-        });
-    
-    </script>
-
 </body>
 </html>
